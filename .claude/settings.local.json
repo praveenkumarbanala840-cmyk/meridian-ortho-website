@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Write-Host \"PWD: $\\(Get-Location\\)\"; Get-ChildItem -Force -Path . | Out-String -Width 200)",
+      "PowerShell(npm *)",
+      "PowerShell(winget *)",
+      "PowerShell(node --version; git --version)"
+    ]
+  }
+}
