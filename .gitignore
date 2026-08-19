@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# raw/unoptimized source assets (see scripts/optimize-images.mjs) — processed
+# output lives in src/assets and public/, only those get committed
+/assets/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

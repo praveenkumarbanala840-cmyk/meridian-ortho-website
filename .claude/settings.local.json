@@ -5,7 +5,8 @@
       "PowerShell(npm *)",
       "PowerShell(winget *)",
       "PowerShell(node --version; git --version)",
-      "PowerShell(git config *)"
+      "PowerShell(git config *)",
+      "PowerShell(Stop-Process *)"
     ]
   }
 }

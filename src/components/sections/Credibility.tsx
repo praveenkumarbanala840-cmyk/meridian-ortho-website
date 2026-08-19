@@ -1,4 +1,6 @@
+import Image from "next/image";
 import SectionHeading from "@/components/SectionHeading";
+import doctorPhoto from "@/assets/doctor-photo.jpg";
 
 const STATS = [
   { label: "Years of Experience", value: "15+" },
@@ -18,11 +20,20 @@ export default function Credibility() {
         />
 
         <div className="mt-16 grid gap-12 md:grid-cols-2 md:items-center">
-          <div className="aspect-[4/3] w-full rounded-lg bg-zinc-200" />
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg">
+            <Image
+              src={doctorPhoto}
+              alt="Dr. Prasanna Kumar, orthopedic specialist at Meridian Ortho"
+              fill
+              className="object-cover"
+              sizes="(min-width: 768px) 50vw, 100vw"
+              priority
+            />
+          </div>
 
           <div>
             <h3 className="text-xl font-semibold text-foreground">
-              Dr. Placeholder Name
+              Dr. Prasanna Kumar
             </h3>
             <p className="mt-1 text-sm font-medium text-primary">
               MBBS, MS (Orthopedics), Fellowship in Joint Replacement
