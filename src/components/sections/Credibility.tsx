@@ -6,7 +6,7 @@ import doctorPhoto from "@/assets/doctor-photo-v2.jpg";
 
 const STATS = [
   { label: "Years of Experience", value: 5, suffix: "+" },
-  { label: "Patients Treated", value: 800, suffix: "+" },
+  { label: "Patients Treated", value: 4500, suffix: "+" },
   { label: "Patient Rating", value: 4.9, suffix: " / 5", decimals: 1 },
 ];
 

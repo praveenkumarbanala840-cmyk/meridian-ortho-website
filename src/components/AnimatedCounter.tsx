@@ -7,6 +7,16 @@ function easeOutQuint(t: number) {
   return 1 - Math.pow(1 - t, 5);
 }
 
+// Adds thousand separators (e.g. 4500 -> "4,500") on top of fixed decimal
+// precision, so large counts like "Patients Treated" read clearly both
+// mid-count and at rest.
+function formatValue(value: number, decimals: number) {
+  return value.toLocaleString("en-US", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+}
+
 export default function AnimatedCounter({
   value,
   decimals = 0,
@@ -28,7 +38,7 @@ export default function AnimatedCounter({
   // (three of these can be running at once, right as scroll-reveal and the
   // body-video-scrub are also active) don't force a React re-render on
   // every single rAF tick — only when the visible digits actually change.
-  const lastRendered = useRef(display.toFixed(decimals));
+  const lastRendered = useRef(formatValue(display, decimals));
 
   useEffect(() => {
     if (!inView) return;
@@ -39,7 +49,7 @@ export default function AnimatedCounter({
     function tick(now: number) {
       const progress = Math.min((now - start) / duration, 1);
       const next = value * easeOutQuint(progress);
-      const formatted = next.toFixed(decimals);
+      const formatted = formatValue(next, decimals);
       if (formatted !== lastRendered.current) {
         lastRendered.current = formatted;
         setDisplay(next);
@@ -56,7 +66,7 @@ export default function AnimatedCounter({
   return (
     <span ref={ref} className={className}>
       {prefix}
-      {display.toFixed(decimals)}
+      {formatValue(display, decimals)}
       {suffix}
     </span>
   );
