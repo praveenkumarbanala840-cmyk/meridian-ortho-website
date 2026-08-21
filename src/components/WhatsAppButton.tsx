@@ -1,6 +1,6 @@
-const PHONE_NUMBER = "15551234567";
+const PHONE_NUMBER = "918179944626";
 const PREFILLED_MESSAGE =
-  "Hi, I'd like to book an appointment at Meridian Ortho.";
+  "Hi, I'd like to enquire about an appointment at Meridian Ortho.";
 
 export default function WhatsAppButton() {
   return (

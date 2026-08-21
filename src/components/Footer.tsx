@@ -33,12 +33,17 @@ export default function Footer() {
 
         <div className="flex flex-col gap-3">
           <p className="text-sm font-semibold text-white/90">Contact</p>
-          <p className="text-sm text-white/70">(555) 123-4567</p>
-          <p className="text-sm text-white/70">care@meridianortho.example</p>
+          <p className="text-sm text-white/70">+91 8179944626</p>
+          <a
+            href="mailto:Prasannakumar3338@gmail.com"
+            className="text-sm text-white/70 transition-colors hover:text-white"
+          >
+            Prasannakumar3338@gmail.com
+          </a>
           <p className="text-sm text-white/70">
-            123 Placeholder Street, Suite 400
+            Srikara Hospitals, 222, Phase 2, Mythri Nagar
             <br />
-            City, State 00000
+            Hafeezpet, Madeenaguda, Hyderabad, Telangana 500049
           </p>
         </div>
       </div>

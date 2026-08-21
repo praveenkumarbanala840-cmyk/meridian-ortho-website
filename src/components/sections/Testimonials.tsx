@@ -2,43 +2,54 @@
 
 import { useEffect, useRef, useState } from "react";
 import SectionHeading from "@/components/SectionHeading";
+import Reveal from "@/components/Reveal";
+import { useCoverflow, coverflowCardStyle, wrappedOffset } from "@/lib/coverflow";
 
 const TESTIMONIALS = [
   {
     video: "/testimonials/testimonial-1-spine.mp4",
+    poster: "/testimonials/testimonial-1-spine-poster.jpg",
     label: "Spine & Back Surgery Recovery",
     quote:
-      "Placeholder testimonial copy describing a positive experience and outcome with the clinic.",
+      "The care after my spine surgery was exceptional. The recovery plan was clear, and I felt supported through every step of getting back on my feet.",
   },
   {
     video: "/testimonials/testimonial-2-knee.mp4",
+    poster: "/testimonials/testimonial-2-knee-poster.jpg",
     label: "Total Knee Replacement",
     quote:
-      "Placeholder testimonial copy describing a positive experience and outcome with the clinic.",
+      "After years of knee pain, the treatment here changed everything. The team's approach made a difficult recovery feel manageable and reassuring.",
   },
   {
     video: "/testimonials/testimonial-4-kneereplacement.mp4",
+    poster: "/testimonials/testimonial-4-kneereplacement-poster.jpg",
     label: "Bilateral Knee Replacement",
     quote:
-      "Placeholder testimonial copy describing a positive experience and outcome with the clinic.",
+      "Going through knee replacement on both sides felt overwhelming at first, but the structured recovery program helped me regain mobility faster than I expected.",
   },
   {
     video: "/testimonials/testimonial-3-fracture.mp4",
+    poster: "/testimonials/testimonial-3-fracture-poster.jpg",
     label: "Fracture & Trauma Recovery",
     quote:
-      "Placeholder testimonial copy describing a positive experience and outcome with the clinic.",
+      "The precision and care in treating my fracture gave me confidence throughout recovery. I'm back to my normal activities without any lingering issues.",
   },
   {
     video: "/testimonials/testimonial-5-shoulder.mp4",
+    poster: "/testimonials/testimonial-5-shoulder-poster.jpg",
     label: "Shoulder Surgery Recovery",
     quote:
-      "Placeholder testimonial copy describing a positive experience and outcome with the clinic.",
+      "My shoulder mobility is fully restored after treatment here. The physiotherapy guidance made all the difference in a smooth recovery.",
   },
 ];
 
-function Stars() {
+type Testimonial = (typeof TESTIMONIALS)[number];
+
+const COUNT = TESTIMONIALS.length;
+
+function Stars({ className = "text-primary" }: { className?: string }) {
   return (
-    <div className="flex gap-1 text-primary" aria-hidden="true">
+    <div className={`flex gap-1 ${className}`} aria-hidden="true">
       {Array.from({ length: 5 }).map((_, i) => (
         <svg key={i} viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4">
           <path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6-4.5-4.2 6.1-.7z" />
@@ -80,130 +91,204 @@ function CloseIcon() {
   );
 }
 
-const VISIBILITY_THRESHOLD = 0.6;
+function ChevronIcon({ direction }: { direction: "left" | "right" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-5 w-5"
+    >
+      <path d={direction === "left" ? "M15 18l-6-6 6-6" : "M9 18l6-6-6-6"} />
+    </svg>
+  );
+}
 
-export default function Testimonials() {
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const visibleSet = useRef<Set<number>>(new Set());
-  const hoverIndex = useRef<number | null>(null);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [expanded, setExpanded] = useState<number | null>(null);
-
-  function recomputeActiveFromVisibility() {
-    if (hoverIndex.current !== null) return;
-    const lowest = Math.min(...visibleSet.current, Infinity);
-    setActiveIndex(Number.isFinite(lowest) ? lowest : null);
-  }
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const idx = Number((entry.target as HTMLElement).dataset.index);
-          if (entry.isIntersecting) {
-            visibleSet.current.add(idx);
-          } else {
-            visibleSet.current.delete(idx);
-          }
-        });
-        recomputeActiveFromVisibility();
-      },
-      { threshold: VISIBILITY_THRESHOLD },
-    );
-
-    videoRefs.current.forEach((video) => video && observer.observe(video));
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    videoRefs.current.forEach((video, i) => {
-      if (!video) return;
-      if (i === activeIndex && expanded === null) {
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
-    });
-  }, [activeIndex, expanded]);
+function CarouselCard({
+  testimonial,
+  offset,
+  cardWidth,
+  dragX,
+  dragging,
+  onSelect,
+  onExpand,
+}: {
+  testimonial: Testimonial;
+  offset: number;
+  cardWidth: number;
+  dragX: number;
+  dragging: boolean;
+  onSelect: () => void;
+  onExpand: () => void;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const isActive = offset === 0;
 
   useEffect(() => {
-    if (expanded === null) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setExpanded(null);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [expanded]);
-
-  function handleMouseEnter(i: number) {
-    hoverIndex.current = i;
-    setActiveIndex(i);
-  }
-
-  function handleMouseLeave(i: number) {
-    if (hoverIndex.current === i) {
-      hoverIndex.current = null;
-      recomputeActiveFromVisibility();
+    const video = videoRef.current;
+    if (!video) return;
+    if (isActive) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+      video.currentTime = 0;
     }
-  }
+  }, [isActive]);
 
   return (
-    <section id="testimonials" className="scroll-mt-20 px-6 py-24">
-      <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow="Patient Stories"
-          title="Trusted by patients across every stage of recovery"
+    <div
+      className="absolute left-1/2 top-0 -translate-x-1/2"
+      style={{ width: cardWidth, ...coverflowCardStyle(offset, cardWidth, dragX, dragging) }}
+      onClick={() => {
+        if (!isActive) onSelect();
+      }}
+    >
+      <div
+        className={`relative aspect-[9/16] w-full overflow-hidden rounded-2xl bg-black shadow-xl ${
+          isActive ? "cursor-default" : "cursor-pointer"
+        }`}
+      >
+        <video
+          ref={videoRef}
+          className="h-full w-full object-cover"
+          src={testimonial.video}
+          poster={testimonial.poster}
+          muted
+          loop
+          playsInline
+          preload="none"
         />
 
-        <div className="mt-16 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-3 xl:grid-cols-5">
-          {TESTIMONIALS.map((testimonial, i) => (
-            <div
-              key={testimonial.video}
-              className="flex w-[80%] shrink-0 snap-center flex-col overflow-hidden rounded-lg border border-border bg-surface sm:w-auto"
-              onMouseEnter={() => handleMouseEnter(i)}
-              onMouseLeave={() => handleMouseLeave(i)}
-            >
-              <div className="relative aspect-[9/16] w-full bg-black">
-                <video
-                  ref={(el) => {
-                    videoRefs.current[i] = el;
-                  }}
-                  data-index={i}
-                  className="h-full w-full object-contain"
-                  src={testimonial.video}
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                />
-                <button
-                  type="button"
-                  onClick={() => setExpanded(i)}
-                  aria-label={`Expand video: ${testimonial.label}`}
-                  className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
-                >
-                  <ExpandIcon />
-                </button>
-              </div>
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent px-4 pb-4 pt-20">
+          <Stars className="text-accent" />
+          <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-white/90">
+            &ldquo;{testimonial.quote}&rdquo;
+          </p>
+          <p className="mt-2 text-sm font-semibold text-white">
+            {testimonial.label}
+          </p>
+        </div>
 
-              <div className="flex flex-1 flex-col p-6">
-                <Stars />
-                <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </p>
-                <p className="mt-6 text-sm font-semibold text-foreground">
-                  {testimonial.label}
-                </p>
-              </div>
-            </div>
+        {isActive && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onExpand();
+            }}
+            aria-label={`Expand video: ${testimonial.label}`}
+            className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
+          >
+            <ExpandIcon />
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default function Testimonials() {
+  const [expanded, setExpanded] = useState(false);
+  const {
+    activeIndex,
+    goTo,
+    next,
+    prev,
+    dragging,
+    dragX,
+    cardWidth,
+    containerRef,
+    onPointerDown,
+    onPointerMove,
+    endDrag,
+    onKeyDown,
+    trySelect,
+  } = useCoverflow({ count: COUNT });
+
+  const cardHeight = Math.round((cardWidth * 16) / 9) + 24;
+
+  return (
+    <section id="testimonials" className="scroll-mt-20 overflow-x-hidden bg-gradient-to-b from-black/80 via-black/68 to-black/80 px-6 py-24">
+      <div className="mx-auto max-w-6xl">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Patient Stories"
+            title="Trusted by patients across every stage of recovery"
+          />
+        </Reveal>
+
+        <Reveal delay={100} className="relative mt-16 overflow-hidden">
+          <div
+            ref={containerRef}
+            role="group"
+            aria-roledescription="carousel"
+            aria-label="Patient testimonials"
+            tabIndex={0}
+            onKeyDown={onKeyDown}
+            className="relative touch-pan-y select-none outline-none"
+            style={{ height: cardHeight }}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={endDrag}
+            onPointerLeave={endDrag}
+            onPointerCancel={endDrag}
+          >
+            {TESTIMONIALS.map((testimonial, i) => (
+              <CarouselCard
+                key={testimonial.video}
+                testimonial={testimonial}
+                offset={wrappedOffset(i, activeIndex, COUNT)}
+                cardWidth={cardWidth}
+                dragX={dragX}
+                dragging={dragging}
+                onSelect={() => trySelect(i)}
+                onExpand={() => setExpanded(true)}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={prev}
+            aria-label="Previous testimonial"
+            className="absolute left-0 top-1/2 z-[110] flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-surface text-foreground shadow-md transition-colors hover:bg-primary-light sm:left-2"
+          >
+            <ChevronIcon direction="left" />
+          </button>
+          <button
+            type="button"
+            onClick={next}
+            aria-label="Next testimonial"
+            className="absolute right-0 top-1/2 z-[110] flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-surface text-foreground shadow-md transition-colors hover:bg-primary-light sm:right-2"
+          >
+            <ChevronIcon direction="right" />
+          </button>
+        </Reveal>
+
+        <div className="mt-6 flex items-center justify-center gap-2">
+          {TESTIMONIALS.map((testimonial, i) => (
+            <button
+              key={testimonial.video}
+              type="button"
+              onClick={() => goTo(i)}
+              aria-label={`Go to testimonial ${i + 1} of ${COUNT}`}
+              aria-current={i === activeIndex}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === activeIndex ? "w-6 bg-primary" : "w-2 bg-border hover:bg-primary-light"
+              }`}
+            />
           ))}
         </div>
       </div>
 
-      {expanded !== null && (
+      {expanded && (
         <div
           className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 p-6"
-          onClick={() => setExpanded(null)}
+          onClick={() => setExpanded(false)}
         >
           <div
             className="relative aspect-[9/16] max-h-[85vh] w-full max-w-sm"
@@ -211,7 +296,8 @@ export default function Testimonials() {
           >
             <video
               className="h-full w-full rounded-lg bg-black object-contain"
-              src={TESTIMONIALS[expanded].video}
+              src={TESTIMONIALS[activeIndex].video}
+              poster={TESTIMONIALS[activeIndex].poster}
               autoPlay
               muted
               loop
@@ -220,7 +306,7 @@ export default function Testimonials() {
             />
             <button
               type="button"
-              onClick={() => setExpanded(null)}
+              onClick={() => setExpanded(false)}
               aria-label="Close video"
               className="absolute -top-10 right-0 text-white transition-colors hover:text-white/70"
             >

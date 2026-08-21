@@ -1,60 +1,91 @@
 import Image from "next/image";
 import SectionHeading from "@/components/SectionHeading";
-import doctorPhoto from "@/assets/doctor-photo.jpg";
+import Reveal from "@/components/Reveal";
+import AnimatedCounter from "@/components/AnimatedCounter";
+import doctorPhoto from "@/assets/doctor-photo-v2.jpg";
 
 const STATS = [
-  { label: "Years of Experience", value: "15+" },
-  { label: "Patients Treated", value: "10,000+" },
-  { label: "Patient Rating", value: "4.9 / 5" },
-  { label: "Board Certified", value: "Yes" },
+  { label: "Years of Experience", value: 5, suffix: "+" },
+  { label: "Patients Treated", value: 800, suffix: "+" },
+  { label: "Patient Rating", value: 4.9, suffix: " / 5", decimals: 1 },
+];
+
+const SPECIALIZATIONS = [
+  "Orthopedic Rehabilitation",
+  "Pre & Post-Operative Care",
+  "Neurological Rehabilitation",
+  "Cardiac Rehabilitation",
+  "Pediatric Physiotherapy",
 ];
 
 export default function Credibility() {
   return (
-    <section id="about" className="scroll-mt-20 bg-surface px-6 py-24">
+    <section id="about" className="scroll-mt-20 bg-gradient-to-b from-black/80 via-black/68 to-black/80 px-6 py-24">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow="About Meridian Ortho"
-          title="Care led by board-certified orthopedic specialists"
-          description="Our team combines clinical precision with a calm, patient-first approach — so every treatment plan is as much about comfort as it is about recovery."
-        />
+        <Reveal>
+          <SectionHeading
+            eyebrow="About Meridian Ortho"
+            title="Care led by board-certified orthopedic specialists"
+            description="Our team combines clinical precision with a calm, patient-first approach — so every treatment plan is as much about comfort as it is about recovery."
+          />
+        </Reveal>
 
         <div className="mt-16 grid gap-12 md:grid-cols-2 md:items-center">
-          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg">
+          <Reveal
+            direction="right"
+            className="relative aspect-[3/4] w-full overflow-hidden rounded-lg"
+          >
             <Image
               src={doctorPhoto}
-              alt="Dr. Prasanna Kumar, orthopedic specialist at Meridian Ortho"
+              alt="Dr. Prasanna Kumar Banala, orthopedic specialist at Meridian Ortho"
               fill
               className="object-cover"
               sizes="(min-width: 768px) 50vw, 100vw"
-              priority
             />
-          </div>
+          </Reveal>
 
-          <div>
-            <h3 className="text-xl font-semibold text-foreground">
-              Dr. Prasanna Kumar
+          <Reveal direction="left">
+            <h3 className="text-xl font-semibold text-white">
+              Dr. Prasanna Kumar Banala
             </h3>
-            <p className="mt-1 text-sm font-medium text-primary">
-              MBBS, MS (Orthopedics), Fellowship in Joint Replacement
+            <p className="mt-1 text-sm font-medium text-accent">
+              MPT (Neuro) — Master of Physiotherapy, Neurology Specialization
             </p>
-            <p className="mt-4 text-base leading-relaxed text-muted">
-              Placeholder bio copy describing the doctor&apos;s background,
-              specialties, and approach to patient care. Replace with real
-              credentials and clinic history.
+            <p className="mt-4 text-base leading-relaxed text-white/70">
+              Dr. Prasanna Kumar Banala is a physiotherapist specializing in
+              neurological and orthopedic rehabilitation, with hands-on
+              experience across pre &amp; post-operative care, cardiac, and
+              pediatric physiotherapy. His approach combines clinical
+              precision with genuine patient care, helping patients recover
+              safely and confidently at every stage.
             </p>
 
-            <dl className="mt-8 grid grid-cols-2 gap-6">
-              {STATS.map((stat) => (
-                <div key={stat.label}>
-                  <dt className="text-sm text-muted">{stat.label}</dt>
-                  <dd className="mt-1 text-2xl font-semibold text-primary">
-                    {stat.value}
+            <div className="mt-6 flex flex-wrap gap-2">
+              {SPECIALIZATIONS.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full bg-primary-light px-3 py-1 text-xs font-medium text-primary"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            <dl className="mt-8 grid grid-cols-3 gap-6">
+              {STATS.map((stat, i) => (
+                <Reveal key={stat.label} delay={i * 80}>
+                  <dt className="text-sm text-white/70">{stat.label}</dt>
+                  <dd className="mt-1 text-2xl font-semibold text-accent">
+                    <AnimatedCounter
+                      value={stat.value}
+                      decimals={stat.decimals ?? 0}
+                      suffix={stat.suffix}
+                    />
                   </dd>
-                </div>
+                </Reveal>
               ))}
             </dl>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

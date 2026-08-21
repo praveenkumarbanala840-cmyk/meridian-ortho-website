@@ -27,8 +27,30 @@
   --font-sans: var(--font-inter);
 }
 
+html,
+body {
+  /* Safeguard against any element (e.g. a carousel's off-screen cards)
+     extending past the viewport width and creating stray horizontal scroll.
+     `clip` (not `hidden`) so this doesn't turn html/body into a scroll
+     container — that would break `position: sticky` for descendants like
+     the navbar. */
+  overflow-x: clip;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Hides the scrollbar on horizontally swipeable rows (e.g. the mobile
+   Services carousel) while leaving the underlying scroll/snap behavior
+   intact, so touch swiping still feels native. */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge/IE */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Chromium-based Edge */
 }

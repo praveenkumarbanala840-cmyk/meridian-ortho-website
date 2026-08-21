@@ -1,4 +1,5 @@
 import SectionHeading from "@/components/SectionHeading";
+import Reveal from "@/components/Reveal";
 
 const FAQS = [
   {
@@ -30,23 +31,27 @@ const FAQS = [
 
 export default function FAQ() {
   return (
-    <section id="faq" className="scroll-mt-20 bg-surface px-6 py-24">
+    <section id="faq" className="scroll-mt-20 bg-gradient-to-b from-black/80 via-black/68 to-black/80 px-6 py-24">
       <div className="mx-auto max-w-3xl">
-        <SectionHeading eyebrow="FAQ" title="Common questions, answered" />
+        <Reveal>
+          <SectionHeading eyebrow="FAQ" title="Common questions, answered" />
+        </Reveal>
 
-        <div className="mt-12 divide-y divide-border border-t border-border">
-          {FAQS.map((faq) => (
-            <details key={faq.question} className="group py-5">
-              <summary className="flex cursor-pointer list-none items-center justify-between text-base font-medium text-foreground">
-                {faq.question}
-                <span className="ml-4 shrink-0 text-primary transition-transform group-open:rotate-45">
-                  +
-                </span>
-              </summary>
-              <p className="mt-3 text-sm leading-relaxed text-muted">
-                {faq.answer}
-              </p>
-            </details>
+        <div className="mt-12 divide-y divide-white/15 border-t border-white/15">
+          {FAQS.map((faq, i) => (
+            <Reveal key={faq.question} delay={i * 80}>
+              <details className="group py-5">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-base font-medium text-white">
+                  {faq.question}
+                  <span className="ml-4 shrink-0 text-accent transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-sm leading-relaxed text-white/70">
+                  {faq.answer}
+                </p>
+              </details>
+            </Reveal>
           ))}
         </div>
       </div>
