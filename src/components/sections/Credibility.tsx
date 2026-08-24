@@ -5,7 +5,7 @@ import AnimatedCounter from "@/components/AnimatedCounter";
 import doctorPhoto from "@/assets/doctor-photo-v2.jpg";
 
 const STATS = [
-  { label: "Years of Experience", value: 5, suffix: "+" },
+  { label: "Years of Experience", value: 6, suffix: "+" },
   { label: "Patients Treated", value: 7500, suffix: "+" },
   { label: "Patient Rating", value: 4.9, suffix: " / 5", decimals: 1 },
 ];
@@ -45,10 +45,10 @@ export default function Credibility() {
           </Reveal>
 
           <Reveal direction="left">
-            <h3 className="text-xl font-semibold text-white">
+            <h3 className="text-xl font-semibold leading-snug text-white">
               Dr. Prasanna Kumar Banala
             </h3>
-            <p className="mt-1 text-sm font-medium text-accent">
+            <p className="mt-2 text-sm font-medium text-accent">
               MPT (Neuro)
             </p>
             <p className="mt-4 text-base leading-relaxed text-white/70">
