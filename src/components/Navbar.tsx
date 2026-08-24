@@ -16,14 +16,14 @@ export default function Navbar() {
         <Link href="/" className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <Activity
             aria-hidden="true"
-            className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5"
+            className="h-6 w-6 shrink-0 text-brand-gold drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] sm:h-7 sm:w-7 md:h-7 md:w-7 md:drop-shadow-none"
           />
-          <span className="block text-[14px] font-bold leading-tight tracking-tight text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] max-[360px]:text-[13px] sm:text-base md:hidden">
+          <span className="block text-[14px] font-bold leading-tight tracking-tight text-brand-gold [text-shadow:0_1px_3px_rgb(0_0_0_/_0.95),0_1px_8px_rgb(0_0_0_/_0.8),0_0_1px_rgb(0_0_0_/_1)] max-[360px]:text-[13px] sm:text-base md:hidden">
             Dr. Prasanna Kumar
             <br />
             Physio Care
           </span>
-          <span className="hidden text-lg font-semibold tracking-tight text-primary md:block">
+          <span className="hidden text-lg font-semibold tracking-tight text-brand-gold md:block">
             Dr. Prasanna Kumar Physio Care
           </span>
         </Link>

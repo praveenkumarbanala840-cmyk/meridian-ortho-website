@@ -11,6 +11,7 @@
   --accent-hover: #c9642c;
   --muted: #6b7573;
   --border: #e7e1d8;
+  --brand-gold: #c9a668;
 }
 
 @theme inline {
@@ -24,6 +25,7 @@
   --color-accent-hover: var(--accent-hover);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-brand-gold: var(--brand-gold);
   --font-sans: var(--font-inter);
 }
 
