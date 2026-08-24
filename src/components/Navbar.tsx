@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Activity } from "lucide-react";
 
 const NAV_LINKS = [
   { href: "#about", label: "About" },
@@ -12,7 +13,11 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/40 backdrop-blur-sm">
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2.5 sm:px-6 md:h-16 md:gap-0 md:py-0">
-        <Link href="/" className="shrink-0">
+        <Link href="/" className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <Activity
+            aria-hidden="true"
+            className="h-4 w-4 shrink-0 text-primary sm:h-5 sm:w-5"
+          />
           <span className="block text-[14px] font-bold leading-tight tracking-tight text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] max-[360px]:text-[13px] sm:text-base md:hidden">
             Dr. Prasanna Kumar
             <br />
