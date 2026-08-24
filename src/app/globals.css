@@ -12,6 +12,7 @@
   --muted: #6b7573;
   --border: #e7e1d8;
   --brand-gold: #c9a668;
+  --brand-teal-light: #6fd3d0;
 }
 
 @theme inline {
@@ -26,6 +27,7 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-brand-gold: var(--brand-gold);
+  --color-brand-teal-light: var(--brand-teal-light);
   --font-sans: var(--font-inter);
 }
 

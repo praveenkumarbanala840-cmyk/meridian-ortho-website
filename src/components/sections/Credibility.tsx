@@ -45,12 +45,14 @@ export default function Credibility() {
           </Reveal>
 
           <Reveal direction="left">
-            <h3 className="text-xl font-semibold leading-snug text-white">
-              Dr. Prasanna Kumar Banala
-            </h3>
-            <p className="mt-2 text-sm font-medium text-accent">
-              MPT (Neuro)
-            </p>
+            <div className="w-fit max-w-full text-right">
+              <h3 className="text-xl font-semibold leading-snug text-white">
+                Dr. Prasanna Kumar Banala
+              </h3>
+              <p className="mt-2 text-sm font-medium text-accent">
+                MPT (Neuro)
+              </p>
+            </div>
             <p className="mt-4 text-base leading-relaxed text-white/70">
               Dr. Prasanna Kumar Banala is a physiotherapist specializing in
               neurological and orthopedic rehabilitation, with hands-on
