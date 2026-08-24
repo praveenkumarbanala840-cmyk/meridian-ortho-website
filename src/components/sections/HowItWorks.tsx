@@ -11,7 +11,7 @@ import treatmentImage from "@/assets/steps/step-treatment.jpg";
 import recoveryImage from "@/assets/steps/step-recovery.jpg";
 
 const VIDEO_CONSULT_MESSAGE =
-  "Hi, I'd like to book a video consultation at Meridian Ortho.";
+  "Hi, I'd like to book a video consultation at Dr. Prasanna Kumar Physio Care.";
 const VIDEO_CONSULT_URL = `https://wa.me/918179944626?text=${encodeURIComponent(VIDEO_CONSULT_MESSAGE)}`;
 
 const STEPS = [

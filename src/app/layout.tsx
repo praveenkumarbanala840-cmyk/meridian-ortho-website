@@ -11,9 +11,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Meridian Ortho",
+  title: "Dr. Prasanna Kumar Physio Care",
   description:
-    "Meridian Ortho provides precise, patient-first orthopedic care for joint, spine, and sports-related conditions.",
+    "Dr. Prasanna Kumar Physio Care provides precise, patient-first orthopedic care for joint, spine, and sports-related conditions.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

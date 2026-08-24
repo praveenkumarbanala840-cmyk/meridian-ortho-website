@@ -1,6 +1,6 @@
 const PHONE_NUMBER = "918179944626";
 const PREFILLED_MESSAGE =
-  "Hi, I'd like to enquire about an appointment at Meridian Ortho.";
+  "Hi, I'd like to enquire about an appointment at Dr. Prasanna Kumar Physio Care.";
 
 export default function WhatsAppButton() {
   return (
@@ -8,7 +8,7 @@ export default function WhatsAppButton() {
       href={`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(PREFILLED_MESSAGE)}`}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat with Meridian Ortho on WhatsApp"
+      aria-label="Chat with Dr. Prasanna Kumar Physio Care on WhatsApp"
       className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-lg transition-colors hover:bg-accent-hover"
     >
       <svg

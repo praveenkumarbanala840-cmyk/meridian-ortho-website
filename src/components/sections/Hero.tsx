@@ -46,7 +46,7 @@ export default function Hero() {
         </h1>
         <Reveal delay={80}>
           <p className="max-w-xl text-lg leading-relaxed text-white/80">
-            Meridian Ortho provides precise diagnosis and personalized
+            Dr. Prasanna Kumar provides precise diagnosis and personalized
             treatment for joint, spine, and sports-related conditions — with
             a calm, patient-first experience.
           </p>

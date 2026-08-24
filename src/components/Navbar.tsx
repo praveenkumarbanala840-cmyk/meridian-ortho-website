@@ -10,13 +10,13 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/40 backdrop-blur-sm">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link
           href="/"
           className="text-lg font-semibold tracking-tight text-primary"
         >
-          Meridian Ortho
+          Dr. Prasanna Kumar Physio Care
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">

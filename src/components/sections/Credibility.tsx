@@ -6,7 +6,7 @@ import doctorPhoto from "@/assets/doctor-photo-v2.jpg";
 
 const STATS = [
   { label: "Years of Experience", value: 5, suffix: "+" },
-  { label: "Patients Treated", value: 4500, suffix: "+" },
+  { label: "Patients Treated", value: 7500, suffix: "+" },
   { label: "Patient Rating", value: 4.9, suffix: " / 5", decimals: 1 },
 ];
 
@@ -24,7 +24,7 @@ export default function Credibility() {
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <SectionHeading
-            eyebrow="About Meridian Ortho"
+            eyebrow="About Dr. Prasanna Kumar Physio Care"
             title="Care led by board-certified orthopedic specialists"
             description="Our team combines clinical precision with a calm, patient-first approach — so every treatment plan is as much about comfort as it is about recovery."
           />
@@ -37,7 +37,7 @@ export default function Credibility() {
           >
             <Image
               src={doctorPhoto}
-              alt="Dr. Prasanna Kumar Banala, orthopedic specialist at Meridian Ortho"
+              alt="Dr. Prasanna Kumar Banala, orthopedic specialist at Dr. Prasanna Kumar Physio Care"
               fill
               className="object-cover"
               sizes="(min-width: 768px) 50vw, 100vw"
@@ -49,7 +49,7 @@ export default function Credibility() {
               Dr. Prasanna Kumar Banala
             </h3>
             <p className="mt-1 text-sm font-medium text-accent">
-              MPT (Neuro) — Master of Physiotherapy, Neurology Specialization
+              MPT (Neuro)
             </p>
             <p className="mt-4 text-base leading-relaxed text-white/70">
               Dr. Prasanna Kumar Banala is a physiotherapist specializing in

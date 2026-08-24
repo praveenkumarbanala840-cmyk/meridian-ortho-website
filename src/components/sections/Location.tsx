@@ -25,13 +25,13 @@ export default function Location() {
               className="h-full w-full border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Map showing Meridian Ortho Clinic location"
+              title="Map showing Dr. Prasanna Kumar Physio Care Clinic location"
             />
           </Reveal>
 
           <Reveal direction="left" delay={100}>
             <h3 className="text-lg font-semibold text-white">
-              Meridian Ortho Clinic
+              Dr. Prasanna Kumar Physio Care Clinic
             </h3>
             <p className="mt-2 text-base leading-relaxed text-white/70">
               Srikara Hospitals, 222, Phase 2, Mythri Nagar

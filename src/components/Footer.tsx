@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className="bg-primary-dark px-6 py-16 text-white">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 md:flex-row md:justify-between">
         <div className="max-w-xs">
-          <p className="text-lg font-semibold">Meridian Ortho</p>
+          <p className="text-lg font-semibold">Dr. Prasanna Kumar Physio Care</p>
           <p className="mt-3 text-sm leading-relaxed text-white/70">
             Precise, patient-first orthopedic care for joint, spine, and
             sports-related conditions.
@@ -49,7 +49,7 @@ export default function Footer() {
       </div>
 
       <div className="mx-auto mt-12 max-w-6xl border-t border-white/10 pt-6 text-xs text-white/50">
-        © {new Date().getFullYear()} Meridian Ortho. All rights reserved.
+        © {new Date().getFullYear()} Dr. Prasanna Kumar Physio Care. All rights reserved.
       </div>
     </footer>
   );
