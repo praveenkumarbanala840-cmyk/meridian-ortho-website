@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Dr. Prasanna Kumar Physio Care",
+  title: "Dr. Prasanna Kumar Banala Physiotherapy | Dr. Prasanna Kumar Physio Care",
   description:
     "Dr. Prasanna Kumar Physio Care provides precise, patient-first orthopedic care for joint, spine, and sports-related conditions.",
 };
