@@ -24,12 +24,12 @@ export default function Navbar() {
         <Link href="/" className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <Activity
             aria-hidden="true"
-            className="h-6 w-6 shrink-0 text-brand-gold drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)] sm:h-7 sm:w-7 md:h-7 md:w-7 md:drop-shadow-none"
+            className="h-6 w-6 shrink-0 text-brand-gold sm:h-7 sm:w-7 md:h-7 md:w-7"
           />
-          <span className="block text-[14px] font-bold leading-tight tracking-tight max-[360px]:text-[13px] sm:text-base md:hidden">
-            <span className="text-white">Dr. Prasanna Kumar</span>
+          <span className="block text-[14px] font-bold leading-tight tracking-tight text-brand-gold max-[360px]:text-[13px] sm:text-base md:hidden">
+            Dr. Prasanna Kumar
             <br />
-            <span className="text-brand-teal-light">Physio Care</span>
+            Physio Care
           </span>
           <span className="hidden text-lg font-semibold tracking-tight text-brand-gold md:block">
             Dr. Prasanna Kumar Physio Care
