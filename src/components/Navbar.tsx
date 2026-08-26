@@ -11,7 +11,15 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/60 shadow-md shadow-black/20 backdrop-blur-sm">
+    <header
+      className="sticky top-0 z-50 border-b backdrop-blur-sm"
+      style={{
+        backgroundColor: "rgba(0, 0, 0, 0.6)",
+        borderBottomColor: "rgba(255, 255, 255, 0.1)",
+        boxShadow:
+          "0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.2)",
+      }}
+    >
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2.5 sm:px-6 md:h-16 md:gap-0 md:py-0">
         <Link href="/" className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <Activity
@@ -33,7 +41,7 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm font-medium text-white/80 transition-colors hover:text-white"
+                className="text-sm font-medium text-[rgba(255,255,255,0.8)] transition-colors hover:text-white"
               >
                 {link.label}
               </a>
